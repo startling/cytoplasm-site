@@ -1,0 +1,4 @@
+# ignore the build dir
+_build/*
+# ignore python bytecode
+*.pyc
