@@ -15,6 +15,5 @@ interpreters["markdown"] = markdown_interpreter
 # In the case of the blog controller, at least, it's the source directory for it to find posts in
 # and the destination directory of its output.
 controllers = [
-    # you can optionally specify where the templates are; here, use the controller's defaults.
-    ("blog", ["_posts", "_build/blog", "_controllers/blog/templates"]),
+    ("blog", ["_posts", "_build/blog"]),
 ]
