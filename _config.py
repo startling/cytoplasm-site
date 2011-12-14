@@ -10,6 +10,15 @@ def markdown_interpreter(file, destination):
 
 interpreters["markdown"] = markdown_interpreter
 
+# and a scss interpreter
+from scss import parser as scss_parser
+@SaveReturned
+def scss_interpreter(file):
+    return scss_parser.load(file)
+
+interpreters["scss"] = scss_interpreter
+
+
 # the first thing in the tuple is the name of the module where the controller lives;
 # the second thing is a list of arguments to be used when instantiating a controller object.
 # In the case of the blog controller, at least, it's the source directory for it to find posts in
