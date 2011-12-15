@@ -25,4 +25,5 @@ interpreters["scss"] = scss_interpreter
 # and the destination directory of its output.
 controllers = [
     ("blog", ["_posts", "_build/blog"]),
+    ("page", ["_pages", "_build"])
 ]
