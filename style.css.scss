@@ -1,0 +1,38 @@
+$background-color: #ffffff;
+$text-color: #000000;
+$green: #85c75e;
+$green: #63a53c;
+$green: #466533;
+
+body {
+    background-color: $background-color;
+    width: 600px;
+    margin: auto;
+    color: $text-color;
+    font: 1.2em "Palatino", "palatino", serif;
+}
+ 
+a {
+    color: $green;
+}
+
+header {
+    display: block;
+    margin-top: 40px;
+    margin-bottom: 25px;
+    p {
+        font: bold 25px palatino;
+        font-weight: bold;
+        margin: 0;
+    }
+    img.logo {
+        float: left;
+    }
+    img.banner {
+        font-size: 90px;
+        line-height: 1.33em;
+    }
+}
+pre {
+    font-size: .8em;
+}
