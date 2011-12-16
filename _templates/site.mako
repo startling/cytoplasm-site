@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title> Cytoplasm </title>
     <link rel="stylesheet" href="/style.css" type="text/css">
-    <link rel="stylesheet" href="/murphy.css" type="text/css">
 <body>
     <header>
         <img class="logo" src="/logo.png">
