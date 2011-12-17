@@ -1,0 +1,114 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Cytoplasm </title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+<body>
+    <header>
+        <img class="logo" src="/logo.png">
+        <img class="banner" src="/banner.png" alt="Cytoplasm">
+        <p> A new static site and blog compiler.</p>
+    </header>
+    
+<h1 id="whirlwind-tour">Whirlwind Tour</h1>
+<p>I've spent a lot of time on this and now I'm winding down to where I should probably let people know how to use it. So here's this instead of full-fledged documentation, which will probably come later. Maybe.</p>
+<div class="toc">
+<ul>
+<li><a href="#whirlwind-tour">Whirlwind Tour</a><ul>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#initialization">Initialization</a></li>
+<li><a href="#underscored-and-ordinary-files">Underscored and Ordinary Files</a></li>
+<li><a href="#run-it">Run It!</a></li>
+<li><a href="#controllers">Controllers</a></li>
+<li><a href="#interpreters">Interpreters</a></li>
+<li><a href="#templates">Templates</a></li>
+<li><a href="#a-to-do-list">A To-Do List</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<h2 id="installation">Installation</h2>
+<p>For now, you have to install Cytoplasm from the git repository; Cytoplasm isn't in PyPI. Get <a href="http://git-scm.com/">Git</a> and <a href="http://pypi.python.org/pypi/pip">pip</a> if you don't have them already; they're both really useful tools and I'm sure you'll find something to do with them.</p>
+<p>Clone the repository from <a href="https://github.com/startling/cytoplasm">Github</a>, <code>cd</code> into the directory, and install with pip:</p>
+<pre><code>git clone git://github.com/startling/cytoplasm.git
+cd cytoplasm
+pip install .
+</code></pre>
+<p>Pip will find the dependencies you need, install them, and then install Cytoplasm.</p>
+<h2 id="initialization">Initialization</h2>
+<p>Make a new directory somewhere where you want to keep the source of your blog. Go into it and <code>cytoplasm init bare</code> -- this will git clone the <a href="https://github.com/startling/cytoplasm-bare">cytoplasm-bare</a> repository into the working directory, assuming it's empty, and initialize its submodules</p>
+<p>You'll see two things probably -- a directory called <code>_controller</code> and a file named <code>_config.py</code>.</p>
+<h2 id="underscored-and-ordinary-files">Underscored and Ordinary Files</h2>
+<p>Files and directories in your site directory fall into two categories: the ordinary ones and the underscored ones.  The ordinary ones will be interpreted, if you have the appropriate interpreters, and copied over to your build directory -- this means you can keep "static" things there, like CSS files or images. The underscored ones are reserved for use either by Cytoplasm or one of your controllers.</p>
+<p>First and foremost of the underscored files is your <code>_config.py</code>. This is your configuration, where everything but the content and controller reside. You have your interpreters here, and you can also change variables like <code>build_dir</code>. We'll return to this file in a little bit.</p>
+<h2 id="run-it">Run It!</h2>
+<p>Put a bunch of files ending in <code>.markdown</code> in a directory called <code>_posts</code>. These will be your blog posts. Each of these needs to have a header of this form:</p>
+<pre><code class="yaml">&lt;!-- metadata
+title: An Example Post
+date: 2011/12/17
+tags: [category1, category2]
+--&gt;
+
+</code></pre>
+
+<p>(Make sure you have that blank line after this header; markdown will choke if you don't.)</p>
+<p>Execute <code>cytoplasm build</code>; Cytoplasm will run for a few seconds, if everything's working right. And then there should magically be a directory in your site directory named <code>_build</code> (don't worry, Git is already set to ignore it), where now exist some html files. </p>
+<p>(You'll probably get some errors the first time, namely that Python doesn't have libraries called yaml or markdown. Pip has you covered here: <code>pip install pyyaml markdown</code>. These aren't required by Cytoplasm because they aren't strictly necessary; they're used by the blog controller and the markdown interpreter in your <code>_config.py</code>, to be precise. There should probably be some kind of mechanism for this...)</p>
+<p>If you want to test your new site, <code>cd</code> into <code>_build</code> and use <code>python -m SimpleHTTPServer 8080</code> if you're using Python 2.x or <code>python -m http.server 8080</code> if you use Python 3. While that's running, you can go to <a href="http://localhost:8080/blog">http://localhost:8080/blog</a> and see your glorious content framed in half-assed HTML.</p>
+<p>So what's happening here?</p>
+<h2 id="controllers">Controllers</h2>
+<p>In your <code>_config.py</code>, there's a line that looks something like this:</p>
+<pre><code class="python">controllers = [
+    (&quot;blog&quot;, [&quot;_posts&quot;, &quot;_build/blog&quot;, &quot;_controllers/blog/templates&quot;]),
+]]
+</code></pre>
+
+<p>This tells Cytoplasm to use the controller "blog" (that is, the controller that lives in the directory <code>_controllers/blog</code>), and that it should find data for the blog under <code>_posts</code>; furthermore, it should put these files in <code>_build</code>, and it should get the templates (the half-assed HTML you saw earlier) from <code>_controllers/blog/templates</code>, the controller's example templates. Cool!</p>
+<p>You can also do some neat things, like bind one controller multiple times:</p>
+<pre><code class="python">controllers = [
+    (&quot;page&quot;, [&quot;_pages&quot;, &quot;_build&quot;]),
+    (&quot;page&quot;, [&quot;_documentation&quot;, &quot;_build/documentation&quot;]),
+    (&quot;page&quot;, [&quot;_tutorial&quot;, &quot;_build/tutorial&quot;])
+]
+</code></pre>
+
+<p>Here you see the <a href="https://github.com/startling/cytoplasm-page-controller">pages controller</a> (which is the only other controller, so far) making pages from the <code>_pages</code>, <code>_documentation</code>, and <code>_tutorial</code> and putting them all in unique locations.</p>
+<p>Controllers, by the way, are classes that inherit from a class in the Cytoplasm module, cytoplasm.controllers.Controller. You can install them just by putting them into your <code>_controllers</code> directory and adding a line like one of those above to your <code>_config.py</code>.  If the controller is in a git repository, you can <code>git submodule add url _controllers/wherever</code> and be able to pull further updates.</p>
+<p>Let's dive in even further...</p>
+<h2 id="interpreters">Interpreters</h2>
+<p>Interpreters, in Cytoplasm, are things that convert a mark-up language to the files you want to serve. Like, I've written interprters for <a href="http://makotemplates.org">Mako</a>, <a href="http://daringfireball.net/projects/markdown/">Markdown</a>, and <a href="http://sass-lang.com">SCSS</a>, because those are the ones I use. In practice, interpreters are python functions, and are defined in either the Cytoplasm default configuration (cytoplasm.defaults) or you <code>_config.py</code>.</p>
+<p>You can look in your <code>_config.py</code> for examples, but they should be functions that take two arguments: the file to be read and interpreted, and where the interpreted file should be written. You can also have the decorator <code>@SaveReturned</code> in front of one, in which case your interpreter only needs to take a single argument, the file to be read, and return the interpreted output. This is useful for modules like SCSS, which don't seem to have a built-in way to read and write to and from files in one line.</p>
+<p>Finally, you add that function to the dictionary <code>interpreters</code>; its key should be the suffix of files that will be interpreted by it.</p>
+<p>Here's an SCSS interpreter, used in the making of this very website. Just for kicks:</p>
+<pre><code class="python"># and a scss interpreter
+from scss import parser as scss_parser
+@SaveReturned
+def scss_interpreter(file):
+    return scss_parser.load(file)
+
+interpreters[&quot;scss&quot;] = scss_interpreter
+</code></pre>
+
+<p>A little warning here: you need to have the python-scss module installed, and it doesn't appear to be compatible with Python 3, so there's that.</p>
+<p>Anyway, when the blog controller is called, it interprets each of your Markdown files and then gives them as arguments to the controller's template files, in this case <code>post.mako</code> and <code>chronological.mako</code>.</p>
+<h2 id="templates">Templates</h2>
+<p>The first of these templates, <code>post.mako</code>, is given as an argument a Post object, as defined in the blog-controller's <code>__init__.py</code>. In your template, then, you can use things like <code>post.content</code> and <code>post.date</code> adn <code>post.year</code>. <code>post.mako</code> is used for the pages for single posts, like where the permalinks go.</p>
+<p>The other template, <code>chronological.py</code>, is used for any page that displays more than one post. It's given two things: a list of post objects, to be displayed on that page, and the <code>next</code> and <code>previous</code> variables, which are either <code>None</code> (in the case of the last and first pages, respectively, ones that don't have a next or previous) or the (relative) url to the next or previous page.</p>
+<p>The pages controller, on the other hand, has a single, very very basic template, to which everything is applied. This makes it useful for writing pages (like this one) entirely in Markdown, but still having them have a consistent html base.</p>
+<p>You should probably copy the templates from the controller's example directory into a directory called <code>_templates</code>. You can edit them there. You should also probably have them inherit from a base, named something like <code>site.mako</code>. If you don't know what I mean, you should check out the <a href="http://www.makotemplates.org/docs/syntax.html#inherit">Mako syntax</a> and <a href="https://github.com/startling/cytoplasm-site/tree/master/_templates">this site's <code>_templates</code> directory</a>.</p>
+<h2 id="a-to-do-list">A To-Do List</h2>
+<p>So, we can generalize this experience and make a sort of to-do list for making a Cytoplasm site:</p>
+<ul>
+<li>Install Cytoplasm.</li>
+<li>Install Markdown, pyyaml, and whatever other things you might want.</li>
+<li><code>cytoplam init bare</code>, or, alternatively, write a <code>_config.py</code> from scratch and install controllers yourself.</li>
+<li>Edit your <code>_config.py</code> to bind the controllers wherever it is you want them.</li>
+<li>Copy over the example templates from your controllers to <code>_templates</code> and edit them to work well together. Make a <code>site.mako</code> and have all of your other templates inherit from it.</li>
+<li>Add other things like images, stylesheets, and posts.</li>
+<li><code>cytoplasm build</code>!</li>
+</ul>
+
+</body>
+</html>
+

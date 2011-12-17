@@ -1,0 +1,48 @@
+body {
+	margin: auto;
+	width: 600px;
+	background-color: #fff;
+	color: #000;
+	font: 1.2em 'Palatino' , 'palatino' , serif;}
+
+a {
+	color: #466533;}
+
+h1 a {
+	color: inherit;
+	text-decoration: none;}
+
+p {
+	text-align: justify;}
+
+p.subtitle {
+	margin: 0;
+	margin-top: -1.5em;
+	padding: 0;
+	color: #466533;
+	text-indent: 2em;
+	font-weight: bold;}
+
+p.subtitle a {
+	text-decoration: none;}
+
+header {
+	display: block;
+	margin-top: 40px;
+	margin-bottom: 25px;}
+
+header p {
+	margin: 0;
+	font: bold 25px palatino;
+	font-weight: bold;}
+
+header img.logo {
+	float: left;}
+
+header img.banner {
+	line-height: 1.33em;
+	font-size: 90px;}
+
+pre {
+	font-size: .8em;}
+
