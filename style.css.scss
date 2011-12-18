@@ -6,6 +6,8 @@ body {
     background-color: $background-color;
     width: 600px;
     margin: auto;
+    margin-top: 40px;
+    margin-bottom: 40px;
     color: $text-color;
     font: 1.2em "Palatino", "palatino", serif;
 }
@@ -39,7 +41,6 @@ p.subtitle {
 
 header {
     display: block;
-    margin-top: 40px;
     margin-bottom: 25px;
     p {
         font: bold 25px palatino;
