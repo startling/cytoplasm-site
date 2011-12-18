@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/style.css" type="text/css">
 <body>
     <header>
-        <img class="logo" src="/logo.png">
+        <img class="logo" src="/logo.png" alt="Cytoplasm logo">
         <img class="banner" src="/banner.png" alt="Cytoplasm">
         <p> A new static site and blog compiler.</p>
     </header>
