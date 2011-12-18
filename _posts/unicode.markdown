@@ -8,41 +8,25 @@ This took a few commits, but Cytoplasm works well with Unicode now, even in Pyth
 
 It reminded me of this story:
 
-> Hwæt! Wē Gār‐Dena in geār‐dagum
-> 
-> þēod‐cyninga þrym gefrūnon,
-> 
-> hū þā æðelingas ellen fremedon.
-> 
-> Oft Scyld Scēfing sceaðena þrēatum,
-> 
-> monegum mǣgðum meodo‐setla oftēah.
-> 
-> Egsode eorl, syððan ǣrest wearð
-> 
-> fēa‐sceaft funden: hē þæs frōfre gebād,
-> 
-> wēox under wolcnum, weorð‐myndum ðāh,
-> 
-> oð þæt him ǣghwylc þāra ymb‐sittendra
-> 
-> ofer hron‐rāde hȳran scolde,
-> 
-> gomban gyldan: þæt wæs gōd cyning!
-> 
-> þǣm eafera wæs æfter cenned
-> 
-> geong in geardum, þone god sende
-> 
-> folce tō frōfre; fyren‐þearfe ongeat,
-> 
-> þæt hīe ǣr drugon aldor‐lēase
-> 
-> lange hwīle. Him þæs līf‐frēa,
-> 
-> wuldres wealdend, worold‐āre forgeaf;
-> 
-> Bēowulf wæs brēme (blǣd wīde sprang),
-> 
-> Scyldes eafera Scede‐landum in.
-> 
+> Hwæt! Wē Gār‐Dena in geār‐dagum  
+> þēod‐cyninga þrym gefrūnon,  
+> hū þā æðelingas ellen fremedon.  
+> Oft Scyld Scēfing sceaðena þrēatum,  
+> monegum mǣgðum meodo‐setla oftēah.  
+> Egsode eorl, syððan ǣrest wearð  
+> fēa‐sceaft funden: hē þæs frōfre gebād,  
+> wēox under wolcnum, weorð‐myndum ðāh,  
+> oð þæt him ǣghwylc þāra ymb‐sittendra  
+> ofer hron‐rāde hȳran scolde,  
+> gomban gyldan: þæt wæs gōd cyning!  
+> þǣm eafera wæs æfter cenned  
+> geong in geardum, þone god sende  
+> folce tō frōfre; fyren‐þearfe ongeat,  
+> þæt hīe ǣr drugon aldor‐lēase  
+> lange hwīle. Him þæs līf‐frēa,  
+> wuldres wealdend, worold‐āre forgeaf;  
+> Bēowulf wæs brēme (blǣd wīde sprang),  
+> Scyldes eafera Scede‐landum in.  
+
+And here's some Linear B, just for the hell of it, though you might not have the correct fonts to display it:
+𐀀   𐀁   𐀂   𐀃   𐀄   𐀅   𐀆   𐀇   𐀈   𐀉   𐀊   𐀋       𐀍   𐀎   𐀏𐀒
