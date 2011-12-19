@@ -34,7 +34,7 @@ tags: [category1, category2]
 -->
 
 ~~~~~
-(Make sure you have that blank line after this header; markdown will choke if you don't.)
+(Make sure you have that blank line after this header; markdown will be upset if you don't.)
 
 Execute `cytoplasm build`; Cytoplasm will run for a few seconds, if everything's working right. And then there should magically be a directory in your site directory named `_build` (don't worry, Git is already set to ignore it), where now exist some html files. 
 
@@ -74,17 +74,17 @@ Interpreters, in Cytoplasm, are things that convert a mark-up language to the fi
 
 You can look in your `_config.py` for examples, but they should be functions that take two arguments: the file to be read and interpreted, and where the interpreted file should be written. You can also have the decorator `@SaveReturned` in front of one, in which case your interpreter only needs to take a single argument, the file to be read, and return the interpreted output. This is useful for modules like SCSS, which don't seem to have a built-in way to read and write to and from files in one line.
 
-Finally, you add that function to the dictionary `interpreters`; its key should be the suffix of files that will be interpreted by it.
-
 Here's an SCSS interpreter, used in the making of this very website. Just for kicks:
 ~~~~~{.python}
-# and a scss interpreter
+
+# an scss interpreter
 from scss import parser as scss_parser
+
+# interpret files that end in .scss
+@Interpreter("scss")
 @SaveReturned
 def scss_interpreter(file):
     return scss_parser.load(file)
-
-interpreters["scss"] = scss_interpreter
 ~~~~~
 A little warning here: you need to have the python-scss module installed, and it doesn't appear to be compatible with Python 3, so there's that.
 
