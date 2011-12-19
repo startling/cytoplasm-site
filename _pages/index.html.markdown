@@ -23,6 +23,7 @@ This source of this site (compiled by Cytoplasm, of course) can be cloned from `
 ## More Information
 * A [sample blog](/blog).
 * A weird [combination](/tutorial) of install instructions, documentation, and tutorial.
+* Some [tips](/tutorial/tips.html) that I didn't know where else to put.
 * [Github](https://github.com/startling/cytoplasm) and [Gitorious](https://gitorious.org/cytoplasm/cytoplasm) repositories for Cytoplasm. 
 * [Github repository](https://github.com/startling/cytoplasm-site) for this site.
 
