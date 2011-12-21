@@ -4,15 +4,9 @@ I've spent a lot of time on this and now I'm winding down to where I should prob
 [TOC]
 
 ## Installation
-For now, you have to install Cytoplasm from the git repository; Cytoplasm isn't in PyPI. Get [Git](http://git-scm.com/) and [pip](http://pypi.python.org/pypi/pip) if you don't have them already; they're both really useful tools and I'm sure you'll find something to do with them.
+You should get [pip](http://pypi.python.org/pypi/pip) if you don't already have it.
 
-Clone the repository from [Github](https://github.com/startling/cytoplasm), `cd` into the directory, and install with pip:
-~~~~{.bash}
-git clone git://github.com/startling/cytoplasm.git
-cd cytoplasm
-pip install .
-~~~~
-Pip will find the dependencies you need, install them, and then install Cytoplasm.
+You can get Cytoplasm from PyPI with `pip install cytoplasm`. The version there may be a little outdated at times; if you want to (and have git installed) you can install stright from the git repository with `git://github.com/startling/cytoplasm.git`. Pip will find the dependencies you need, install them, and then install Cytoplasm.
 
 ## Initialization
 Make a new directory somewhere where you want to keep the source of your blog. Go into it and `cytoplasm init bare` -- this will git clone the [cytoplasm-bare](https://github.com/startling/cytoplasm-bare) repository into the working directory, assuming it's empty, and initialize its submodules
