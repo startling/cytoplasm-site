@@ -18,6 +18,8 @@
 <p>Cytoplasm is a simple-ish static site compiler. It's meant to be used mostly as a blogging engine, though it <a href="#cytoplasm-is-easily-extensible">can be used for more than that</a>. Here are some things you might like about it:</p>
 <h2 id="cytoplasm-is-portable">Cytoplasm is Portable</h2>
 <p>A Cytoplasm site is defined completely by its configuration and its contents. The output is just a set of plain html files, and so can be hosted just about anywhere. <code>cytoplasm</code>, the script, will run anywhere where Python is installed -- it's tested and works in Pythons 2.7.2 and 3.2.</p>
+<h2 id="cytoplasm-is-pretty-simple">Cytoplasm is Pretty Simple</h2>
+<p><a href="/tutorial/#installation">Install Cytoplasm</a> and run <code>cytoplasm init bare</code> to get the basis of your future blog. Add some posts in <code>_posts</code>, edit your templates in <code>_templates</code>, and <code>cytoplasm build</code> to generate some html files.</p>
 <h2 id="cytoplasm-is-easily-extensible">Cytoplasm is Easily Extensible</h2>
 <p>Cytoplasm interpreters are python functions in your configuration file. The markdown one, for example, is just:</p>
 <div class="codehilite"><pre><span class="kn">import</span> <span class="nn">markdown</span>
@@ -26,7 +28,7 @@
 <span class="nd">@Interpreter</span><span class="p">(</span><span class="s">&quot;markdown&quot;</span><span class="p">,</span> <span class="s">&quot;md&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">markdown_interpreter</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
     <span class="n">markdown</span><span class="o">.</span><span class="n">markdownFromFile</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="nb">file</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
-            <span class="n">extensions</span> <span class="o">=</span> <span class="n">markdown_extensions</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;utf8&quot;</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">extensions</span> <span class="o">=</span> <span class="n">markdown_extensions</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;utf8&quot;</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 
 

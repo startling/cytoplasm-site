@@ -16,8 +16,22 @@
     
 <h1 id="some-hints">Some Hints</h1>
 <p>Here are some things I didn't know where else to put.</p>
+<div class="toc">
+<ul>
+<li><a href="#some-hints">Some Hints</a><ul>
+<li><a href="#code-highlighting">Code Highlighting</a></li>
+<li><a href="#interpreters">Interpreters:</a><ul>
+<li><a href="#mako">Mako</a></li>
+<li><a href="#scss">scss</a></li>
+<li><a href="#markdown">Markdown</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
 <h2 id="code-highlighting">Code Highlighting</h2>
-<p>First make sure that you have "codehilite" in your <code>markdown_extensions</code> list in <code>_config.py</code>, if you don't have it yet. Previously, python-markdown would raise some errors if you had both "codehilite" and "fenced_code" enabled, and so you might not have it.</p>
+<p>First make sure that you have "codehilite" in your <code>markdown_extensions</code> list in <code>_config.py</code>, if you don't have it yet. At the time of writing, python-markdown <a href="https://github.com/waylan/Python-Markdown/issues/60">raises some errors</a> if you have both "codehilite" and "fenced_code" enabled, and so this might not work for you.</p>
 <p>You'll need a css file, too. Richeland's <a href="https://github.com/richleland/pygments-css">pygments-css</a> repository is super helpful here; just grab one of those and put it in your site root. </p>
 <p>You'll need to add a line to your html header, too, something like:</p>
 <div class="codehilite"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/autumn.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
@@ -34,6 +48,7 @@
 <h2 id="interpreters">Interpreters:</h2>
 <p>Here's all the interpreters I've written so far; let me know if you have another one. Just add them to your <code>_config.py</code> if you want.</p>
 <h3 id="mako">Mako</h3>
+<p>This is probably in your <code>cytoplasm.defaults</code>.</p>
 <div class="codehilite"><pre><span class="kn">import</span> <span class="nn">mako.lookup</span><span class="o">,</span> <span class="nn">mako.template</span>
 <span class="c"># Mako should look for templates to include in the current directory.</span>
 <span class="c"># This should let you include things like &quot;_templates/site.mako&quot;</span>
@@ -66,6 +81,7 @@
 </pre></div>
 
 
+<p>I should probably note here that SCSS doesn't install on Python 3. So uh, don't use it if you expect to use Python 3.</p>
 <h3 id="markdown">Markdown</h3>
 <p>This probably came with your site... still:</p>
 <div class="codehilite"><pre><span class="kn">import</span> <span class="nn">markdown</span>
@@ -74,7 +90,7 @@
 <span class="nd">@Interpreter</span><span class="p">(</span><span class="s">&quot;markdown&quot;</span><span class="p">,</span> <span class="s">&quot;md&quot;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">markdown_interpreter</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
     <span class="n">markdown</span><span class="o">.</span><span class="n">markdownFromFile</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="nb">file</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
-            <span class="n">extensions</span> <span class="o">=</span> <span class="n">markdown_extensions</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;utf8&quot;</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+        <span class="n">extensions</span> <span class="o">=</span> <span class="n">markdown_extensions</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;utf8&quot;</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 
 </body>
