@@ -22,6 +22,7 @@ print "hello, world!"
 Here's all the interpreters I've written so far; let me know if you have another one. Just add them to your `_config.py` if you want.
 
 ### Mako
+This is probably in your `cytoplasm.defaults`.
 ~~~~~{.python}
 import mako.lookup, mako.template
 # Mako should look for templates to include in the current directory.
@@ -53,6 +54,8 @@ def scss_interpreter(file):
     return scss_parser.load(file)
 
 ~~~~~
+I should probably note here that SCSS doesn't install on Python 3. So uh, don't use it if you expect to use Python 3.
+
 ### Markdown
 This probably came with your site... still:
 ~~~~~{.python}
