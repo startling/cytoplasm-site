@@ -1,6 +1,8 @@
 # Some Hints
 Here are some things I didn't know where else to put.
 
+[TOC]
+
 ## Code Highlighting
 First make sure that you have "codehilite" in your `markdown_extensions` list in `_config.py`, if you don't have it yet. Previously, python-markdown would raise some errors if you had both "codehilite" and "fenced_code" enabled, and so you might not have it.
 
