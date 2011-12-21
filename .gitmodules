@@ -1,6 +1,6 @@
 [submodule "_controllers/blog"]
 	path = _controllers/blog
-	url = git@github.com:startling/cytoplasm-blog-controller.git
+	url = git://github.com/startling/cytoplasm-blog-controller.git
 [submodule "_controllers/page"]
 	path = _controllers/page
-	url = https://github.com/startling/cytoplasm-page-controller
+	url = git://github.com/startling/cytoplasm-page-controller.git
