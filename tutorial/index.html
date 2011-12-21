@@ -32,15 +32,8 @@
 </ul>
 </div>
 <h2 id="installation">Installation</h2>
-<p>For now, you have to install Cytoplasm from the git repository; Cytoplasm isn't in PyPI. Get <a href="http://git-scm.com/">Git</a> and <a href="http://pypi.python.org/pypi/pip">pip</a> if you don't have them already; they're both really useful tools and I'm sure you'll find something to do with them.</p>
-<p>Clone the repository from <a href="https://github.com/startling/cytoplasm">Github</a>, <code>cd</code> into the directory, and install with pip:</p>
-<div class="codehilite"><pre>git clone git://github.com/startling/cytoplasm.git
-<span class="nb">cd </span>cytoplasm
-pip install .
-</pre></div>
-
-
-<p>Pip will find the dependencies you need, install them, and then install Cytoplasm.</p>
+<p>You should get <a href="http://pypi.python.org/pypi/pip">pip</a> if you don't already have it.</p>
+<p>You can get Cytoplasm from PyPI with <code>pip install cytoplasm</code>. The version there may be a little outdated at times; if you want to (and have git installed) you can install stright from the git repository with <code>git://github.com/startling/cytoplasm.git</code>. Pip will find the dependencies you need, install them, and then install Cytoplasm.</p>
 <h2 id="initialization">Initialization</h2>
 <p>Make a new directory somewhere where you want to keep the source of your blog. Go into it and <code>cytoplasm init bare</code> -- this will git clone the <a href="https://github.com/startling/cytoplasm-bare">cytoplasm-bare</a> repository into the working directory, assuming it's empty, and initialize its submodules</p>
 <p>You'll see two things probably -- a directory called <code>_controller</code> and a file named <code>_config.py</code>.</p>
