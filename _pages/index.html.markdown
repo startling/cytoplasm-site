@@ -4,6 +4,9 @@ Cytoplasm is a simple-ish static site compiler. It's meant to be used mostly as 
 ## Cytoplasm is Portable
 A Cytoplasm site is defined completely by its configuration and its contents. The output is just a set of plain html files, and so can be hosted just about anywhere. `cytoplasm`, the script, will run anywhere where Python is installed -- it's tested and works in Pythons 2.7.2 and 3.2.
 
+## Cytoplasm is Pretty Simple
+[Install Cytoplasm](/tutorial/#installation) and run `cytoplasm init bare` to get the basis of your future blog. Add some posts in `_posts`, edit your templates in `_templates`, and `cytoplasm build` to generate some html files.
+
 ## Cytoplasm is Easily Extensible
 Cytoplasm interpreters are python functions in your configuration file. The markdown one, for example, is just:
 ~~~~{.python}
