@@ -7,11 +7,11 @@ I've spent a lot of time on this and now I'm winding down to where I should prob
 For now, you have to install Cytoplasm from the git repository; Cytoplasm isn't in PyPI. Get [Git](http://git-scm.com/) and [pip](http://pypi.python.org/pypi/pip) if you don't have them already; they're both really useful tools and I'm sure you'll find something to do with them.
 
 Clone the repository from [Github](https://github.com/startling/cytoplasm), `cd` into the directory, and install with pip:
-
-    git clone git://github.com/startling/cytoplasm.git
-    cd cytoplasm
-    pip install .
-
+~~~~{.bash}
+git clone git://github.com/startling/cytoplasm.git
+cd cytoplasm
+pip install .
+~~~~
 Pip will find the dependencies you need, install them, and then install Cytoplasm.
 
 ## Initialization
