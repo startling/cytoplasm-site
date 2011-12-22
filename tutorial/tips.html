@@ -32,8 +32,7 @@
 </div>
 <h2 id="code-highlighting">Code Highlighting</h2>
 <p>First make sure that you have "codehilite" in your <code>markdown_extensions</code> list in <code>_config.py</code>, if you don't have it yet. At the time of writing, python-markdown <a href="https://github.com/waylan/Python-Markdown/issues/60">raises some errors</a> if you have both "codehilite" and "fenced_code" enabled, and so this might not work for you.</p>
-<p>You'll need a css file, too. Richeland's <a href="https://github.com/richleland/pygments-css">pygments-css</a> repository is super helpful here; just grab one of those and put it in your site root. </p>
-<p>You'll need to add a line to your html header, too, something like:</p>
+<p>You'll need a css file, too. Richeland's <a href="https://github.com/richleland/pygments-css">pygments-css</a> repository is super helpful here; just grab one of those and put it in your site root. Add a line toinclude it in your html header, too, something like:</p>
 <div class="codehilite"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/autumn.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 
@@ -48,7 +47,7 @@
 <h2 id="interpreters">Interpreters:</h2>
 <p>Here's all the interpreters I've written so far; let me know if you have another one. Just add them to your <code>_config.py</code> if you want.</p>
 <h3 id="mako">Mako</h3>
-<p>This is probably in your <code>cytoplasm.defaults</code>.</p>
+<p>This is probably in your <code>cytoplasm.defaults</code>, but it can be helpful to look at:</p>
 <div class="codehilite"><pre><span class="kn">import</span> <span class="nn">mako.lookup</span><span class="o">,</span> <span class="nn">mako.template</span>
 <span class="c"># Mako should look for templates to include in the current directory.</span>
 <span class="c"># This should let you include things like &quot;_templates/site.mako&quot;</span>
