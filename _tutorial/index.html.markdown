@@ -34,7 +34,7 @@ Execute `cytoplasm build`; Cytoplasm will run for a few seconds, if everything's
 
 (You'll probably get some errors the first time, namely that Python doesn't have libraries called yaml or markdown. Pip has you covered here: `pip install pyyaml markdown`. These aren't required by Cytoplasm because they aren't strictly necessary; they're used by the blog controller and the markdown interpreter in your `_config.py`, to be precise. There should probably be some kind of mechanism for this...)
 
-If you want to test your new site, `cd` into `_build` and use `python -m SimpleHTTPServer 8080` if you're using Python 2.x or `python -m http.server 8080` if you use Python 3. While that's running, you can go to <http://localhost:8080/blog> and see your glorious content framed in half-assed HTML.
+If you want to test your new site, use `cytoplasm serve`. While that's running, you can go to <http://localhost:8080/blog> and see your glorious content framed in half-assed HTML. Even more useful is `cytoplasm serve -r`, which will automatically rebuild your site whenever you make a change to a source file.
 
 So what's happening here?
 
