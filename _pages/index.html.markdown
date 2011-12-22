@@ -7,8 +7,7 @@ A Cytoplasm site is defined completely by its configuration and its contents. Th
 ## Cytoplasm is Pretty Simple
 [Install Cytoplasm](/tutorial/#installation) and run `cytoplasm init bare` to get the basis of your future blog. Add some posts in `_posts`, edit your templates in `_templates`, and `cytoplasm build` to generate some html files.
 
-## `cytoplasm serve`
-Cytoplasm comes with a built-in server for local testing. `cytoplasm serve` will start it on port number 8080; `cytoplasm serve -r` will serve on port 8080 and automatically re-build your site whenever you make a change to a source file. You can specify a port with something like `cytoplasm serve 8000`.
+And Cytoplasm comes with a built-in server for local testing. `cytoplasm serve` will start it on port number 8080; `cytoplasm serve -r` will serve on port 8080 and automatically re-build your site whenever you make a change to a source file. You can specify a port with something like `cytoplasm serve 8000`.
 
 ## Cytoplasm is Easily Extensible
 Cytoplasm interpreters are python functions in your configuration file. The markdown one, for example, is just:
