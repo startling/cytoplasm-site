@@ -36,8 +36,6 @@ This source of this site (compiled by Cytoplasm, of course) can be cloned from `
 ## Addenda
 So, what do you think so far? Do you like Cytoplasm? Is there anything you don't understand here, or would like to hear more about? Feel free to get in touch with me -- I'm tim/startling and my email address for now is <tdixon51793@gmail.com>; you can see what I'm up to at [my website](http://somethingsido.com). I'd like to hear if you use Cytoplasm for anything, or have any feedback.
 
-Cytoplasm was mostly inspired by [Blogofile](http://blogofile.com/), though the codebase is completely from scratch.
-
 ## License
 
 Cytoplasm is free software and is released under the [MIT (Expat) License](https://github.com/startling/cytoplasm/blob/master/LICENSE).
