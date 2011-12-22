@@ -20,6 +20,7 @@
 <p>A Cytoplasm site is defined completely by its configuration and its contents. The output is just a set of plain html files, and so can be hosted just about anywhere. <code>cytoplasm</code>, the script, will run anywhere where Python is installed -- it's tested and works in Pythons 2.7.2 and 3.2.</p>
 <h2 id="cytoplasm-is-pretty-simple">Cytoplasm is Pretty Simple</h2>
 <p><a href="/tutorial/#installation">Install Cytoplasm</a> and run <code>cytoplasm init bare</code> to get the basis of your future blog. Add some posts in <code>_posts</code>, edit your templates in <code>_templates</code>, and <code>cytoplasm build</code> to generate some html files.</p>
+<p>And Cytoplasm comes with a built-in server for local testing. <code>cytoplasm serve</code> will start it on port number 8080; <code>cytoplasm serve -r</code> will serve on port 8080 and automatically re-build your site whenever you make a change to a source file. You can specify a port with something like <code>cytoplasm serve 8000</code>.</p>
 <h2 id="cytoplasm-is-easily-extensible">Cytoplasm is Easily Extensible</h2>
 <p>Cytoplasm interpreters are python functions in your configuration file. The markdown one, for example, is just:</p>
 <div class="codehilite"><pre><span class="kn">import</span> <span class="nn">markdown</span>
@@ -45,7 +46,6 @@
 </ul>
 <h2 id="addenda">Addenda</h2>
 <p>So, what do you think so far? Do you like Cytoplasm? Is there anything you don't understand here, or would like to hear more about? Feel free to get in touch with me -- I'm tim/startling and my email address for now is <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#100;&#105;&#120;&#111;&#110;&#53;&#49;&#55;&#57;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#116;&#100;&#105;&#120;&#111;&#110;&#53;&#49;&#55;&#57;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>; you can see what I'm up to at <a href="http://somethingsido.com">my website</a>. I'd like to hear if you use Cytoplasm for anything, or have any feedback.</p>
-<p>Cytoplasm was mostly inspired by <a href="http://blogofile.com/">Blogofile</a>, though the codebase is completely from scratch.</p>
 <h2 id="license">License</h2>
 <p>Cytoplasm is free software and is released under the <a href="https://github.com/startling/cytoplasm/blob/master/LICENSE">MIT (Expat) License</a>.</p>
 
