@@ -6,9 +6,7 @@ Here are some things I didn't know where else to put.
 ## Code Highlighting
 First make sure that you have "codehilite" in your `markdown_extensions` list in `_config.py`, if you don't have it yet. At the time of writing, python-markdown [raises some errors](https://github.com/waylan/Python-Markdown/issues/60) if you have both "codehilite" and "fenced_code" enabled, and so this might not work for you.
 
-You'll need a css file, too. Richeland's [pygments-css](https://github.com/richleland/pygments-css) repository is super helpful here; just grab one of those and put it in your site root. 
-
-You'll need to add a line to your html header, too, something like:
+You'll need a css file, too. Richeland's [pygments-css](https://github.com/richleland/pygments-css) repository is super helpful here; just grab one of those and put it in your site root. Add a line toinclude it in your html header, too, something like:
 ~~~~{.html}
 <link rel="stylesheet" href="/autumn.css" type="text/css">
 ~~~~
@@ -24,7 +22,7 @@ print "hello, world!"
 Here's all the interpreters I've written so far; let me know if you have another one. Just add them to your `_config.py` if you want.
 
 ### Mako
-This is probably in your `cytoplasm.defaults`.
+This is probably in your `cytoplasm.defaults`, but it can be helpful to look at:
 ~~~~~{.python}
 import mako.lookup, mako.template
 # Mako should look for templates to include in the current directory.
@@ -70,6 +68,3 @@ def markdown_interpreter(file, destination):
         extensions = markdown_extensions, encoding="utf8", safe=False)
 
 ~~~~~
-
-
-    
