@@ -1,40 +1,75 @@
-# Features & Design:
-Cytoplasm is a simple-ish static site compiler. It's meant to be used mostly as a blogging engine, though it [can be used for more than that](#cytoplasm-is-easily-extensible). Here are some things you might like about it:
+# Welcome to Cytoplasm!
+This is Cytoplasm, a simple static blogging-and-other-things generator. Cytoplasm takes some posts and templates and outputs a bunch of HTML files, which you can host basically anywhere. Since everything is plain text, using version control and making back-ups are both super easy.
 
-## Cytoplasm is Portable
-A Cytoplasm site is defined completely by its configuration and its contents. The output is just a set of plain html files, and so can be hosted just about anywhere. `cytoplasm`, the script, will run anywhere where Python is installed -- it's tested and works in Pythons 2.7.2 and 3.2.
+## Getting Started 
+You'll need [Git][] and [pip][] to get started. (Side note: this example will only work in Python 2.x, sorry; python-scss doesn't support 3 yet. If you're set on using Python 3, though, read on: Cytoplasm itself is fully compatible with Python 3.x.)
 
-## Cytoplasm is Pretty Simple
-[Install Cytoplasm](/tutorial/#installation) and run `cytoplasm init bare` to get the basis of your future blog. Add some posts in `_posts`, edit your templates in `_templates`, and `cytoplasm build` to generate some html files.
-
-And Cytoplasm comes with a built-in server for local testing. `cytoplasm serve` will start it on port number 8080; `cytoplasm serve -r` will serve on port 8080 and automatically re-build your site whenever you make a change to a source file. You can specify a port with something like `cytoplasm serve 8000`.
-
-## Cytoplasm is Easily Extensible
-Cytoplasm interpreters are python functions in your configuration file. The markdown one, for example, is just:
-~~~~{.python}
-import markdown
-markdown_extensions = ['abbr', 'footnotes', 'toc', 'fenced_code', 'headerid']
-
-@Interpreter("markdown", "md")
-def markdown_interpreter(file, destination):
-    markdown.markdownFromFile(input=file, output=destination,
-        extensions = markdown_extensions, encoding="utf8", safe=False)
+[Git]: http://git-scm.com/
+[pip]: http://www.pip-installer.org/en/latest/index.html
+~~~~{.bash}
+# install cytoplasm -- pip will install cytoplasm's dependencies.
+pip install cytoplasm
+# install this site's dependencies.
+pip install markdown scss
+# make a directory for your site and change into it.
+mkdir cytoplasm-site
+cd cytoplasm-site
+# initalize this site.
+cytoplasm init cytoplasm
+# build the site..
+cytoplasm build
+# serve it!
+cytoplasm serve
 ~~~~
-Similarly, Cytoplasm controllers are classes that inherit from a base class in the cytoplasm module.
+Go to <http://localhost:8080> and you'll have a local replica of this website running. How's that for recursion? Douglas Hofstadter would be proud.
 
-## Cytoplasm Integrates Well With Git
-This source of this site (compiled by Cytoplasm, of course) can be cloned from `https://startling@github.com/startling/cytoplasm-site.git`. Everything works within a git repository; in fact, you'll be missing a lot if you don't use one. Controllers can be installed as git submodules. Pull and push wherever you want!
+After you spend a few moments in awe, you can quit the webserver with ctrl-C.
 
-## More Information
-* A [sample blog](/blog).
-* A weird [combination](/tutorial) of install instructions, documentation, and tutorial.
-* Some [tips](/tutorial/tips.html) that I didn't know where else to put.
-* [Github](https://github.com/startling/cytoplasm) and [Gitorious](https://gitorious.org/cytoplasm/cytoplasm) repositories for Cytoplasm. 
-* [Github repository](https://github.com/startling/cytoplasm-site) for this site.
+## Your Very Own Site
+Now that you can see the edges of how Cytoplasm works, you're probably bounding with unharnessed creativity. Don't worry. It's easy. 
 
-## Addenda
-So, what do you think so far? Do you like Cytoplasm? Is there anything you don't understand here, or would like to hear more about? Feel free to get in touch with me -- I'm tim/startling and my email address for now is <tdixon51793@gmail.com>; you can see what I'm up to at [my website](http://somethingsido.com). I'd like to hear if you use Cytoplasm for anything, or have any feedback.
+We're going to start from the beginning here, but feel free to just edit the files you got above. You might want to pretend to follow along, though, just to get the hang of things:
+~~~~{.bash}
+# make a new directory and change into it.
+mkdir bounding_creativity
+cd bounding_creativity
+# Initialize the bare cytoplasm site here.
+cytoplasm init bare
+# make the `_posts` directory
+mkdir _posts
+~~~~
+Let's make an example post and put it into our `_posts` directory as `creativity.html.markdown`, just for kicks.
+~~~~{.markdown}
+<!-- metadata
+title: Unbounded Creativity
+date: 2011/12/17
+tags: [creativity, cytoplasm]
+-->
 
-## License
+Oh man, Cytoplasm is _so_ exciting!
+~~~~
+The first part of this is an html comment that includes all of your metadata -- you _need_ to have the first two elements, `title` and `date`. Anything further than that is like a blank canvas, delivered to your doorstep in a blister pack with some paints and a cheap paintbrush. You could define a `feeling` field for each post and have your template put little fox-shaped emoticons according to it.
 
-Cytoplasm is free software and is released under the [MIT (Expat) License](https://github.com/startling/cytoplasm/blob/master/LICENSE).
+For now, though, see what you've got with `cytoplasm serve -r`. Go to <http://localhost:8080> again and you'll see your glorious content framed in half-assed html.
+
+Keep the server running for now; `cytoplasm serve -r` will rebuild the site every time you make a change to the source.
+## Chose Your Own Adventure
+Do you want to...
+
+* __edit__ the __half-assed html__? Go to [page 12][templates].
+* __configure__ your new blog? You want [page vii][configuration].
+* learn more about __controllers__ and __interpreters__? Go to [page 34][controllers, interpreters].
+* __see__ the __example blog__? It's the third door on the [left][blog].
+* __enable syntax highlighting__ or __read some more tips__? Go to [page 71][tips].
+* __get more interpreters__? See the [glossary][known interpreters].
+* browse the __git repository for Cytoplasm__? See Github, [Appendix A][Github cytoplasm].
+* browse the __git repository for this site__? See Github, [Appendix B][Github cytoplasm-site]
+
+[templates]: /templates.html
+[configuration]: /configuration.html
+[controllers, interpreters]: /controllers_and_interpreters.html
+[blog]: /blog
+[tips]: /tips.html
+[known interpreters]: /known_interpreters.html
+[Github cytoplasm-site]: https://github.com/startling/cytoplasm-site
+[Github cytoplasm]: https://github.com/startling/cytoplasm
