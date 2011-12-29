@@ -21,11 +21,11 @@
 <div class="codehilite"><pre><span class="c"># install cytoplasm -- pip will install cytoplasm&#39;s dependencies.</span>
 pip install cytoplasm
 <span class="c"># install this site&#39;s dependencies.</span>
-pip install markdown scss
+pip install markdown scss pyyaml
 <span class="c"># make a directory for your site and change into it.</span>
 mkdir cytoplasm-site
 <span class="nb">cd </span>cytoplasm-site
-<span class="c"># initalize this site.</span>
+<span class="c"># initialize this site.</span>
 cytoplasm init cytoplasm
 <span class="c"># build the site..</span>
 cytoplasm build
@@ -35,7 +35,7 @@ cytoplasm serve
 
 
 <p>Go to <a href="http://localhost:8080">http://localhost:8080</a> and you'll have a local replica of this website running. How's that for recursion? Douglas Hofstadter would be proud.</p>
-<p>After you spend a few moments in awe, you can quit the webserver with ctrl-C.</p>
+<p>After you spend a few moments in awe, you can quit the web server with ctrl-C.</p>
 <h2 id="your-very-own-site">Your Very Own Site</h2>
 <p>Now that you can see the edges of how Cytoplasm works, you're probably bounding with unharnessed creativity. Don't worry. It's easy. </p>
 <p>We're going to start from the beginning here, but feel free to just edit the files you got above. You might want to pretend to follow along, though, just to get the hang of things:</p>

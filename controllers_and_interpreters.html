@@ -23,7 +23,7 @@
 <h3 id="the-page-controller">The Page Controller</h3>
 <p>The page controller is probably the simplest usable controller. It takes a bunch of files, interprets them, and then puts them in a template called <code>page.mako</code> (or <code>.haml</code>, or whatever). To do this, it makes a Page object out of each file. That might turn out to be a common pattern in controllers; the blog controller uses it too.</p>
 <p>Why don't you go look at <a href="https://github.com/startling/cytoplasm-page-controller/blob/master/__init__.py">the source</a>? It's pretty simple.</p>
-<p>If you use a sitewide template, you might want page.mako to look something like this:</p>
+<p>If you use a site-wide template, you might want page.mako to look something like this:</p>
 <div class="codehilite"><pre><span class="x">&lt;inherit file=&quot;/_templates/site.mako&quot;/&gt;</span>
 <span class="cp">${</span><span class="n">page</span><span class="o">.</span><span class="n">contents</span><span class="cp">}</span><span class="x"></span>
 </pre></div>
@@ -37,7 +37,7 @@
 
 
 <h3 id="the-blog-controller">The Blog Controller</h3>
-<p>The blog controller takes a series of posts in a directory, interprets them, and then makes chronological pages, post pages, and feeds with them by giving the posts to certain templates. There's a seperate page detailing these templates, by the way.</p>
+<p>The blog controller takes a series of posts in a directory, interprets them, and then makes chronological pages, post pages, and feeds with them by giving the posts to certain templates. There's a separate page detailing these templates, by the way.</p>
 <p>There's not a whole lot to say here; it's kind of straightforward. You can look at the example blog or the source of the blog controller.</p>
 <h2 id="interpreters">Interpreters</h2>
 <p>Interpreters live in <code>_config.py</code> and are used in translating any sort of mark-up language, things like Markdown, Mako, and scss. Controllers use interpreters for certain actions (like interpreting a Markdown post to html, before putting them in templates); in addition, everything in the root of your site directory that doesn't begin with <code>.</code> or <code>_</code> will be interpreted.</p>
