@@ -10,7 +10,7 @@ You'll need [Git][] and [pip][] to get started. (Side note: this example will on
 # install cytoplasm -- pip will install cytoplasm's dependencies.
 pip install cytoplasm
 # install this site's dependencies.
-pip install markdown scss
+pip install markdown scss pyyaml
 # make a directory for your site and change into it.
 mkdir cytoplasm-site
 cd cytoplasm-site
