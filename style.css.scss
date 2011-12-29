@@ -2,6 +2,14 @@ $background-color: #ffffff;
 $text-color: #000000;
 $green: #466533;
 
+@mixin outline {
+    margin: 1em;
+    padding: .5em;
+    border: 1px solid #466533;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+}
+
 body {
     background-color: $background-color;
     width: 600px;
@@ -56,5 +64,19 @@ header {
     }
 }
 pre {
-    font: .8em "Andale mono", courier;
+    @include outline
+    font: .8em  courier;
+}
+
+div.toc {
+    @include outline
+    ul {
+        margin: 0;
+        margin-left: .5em;
+        padding: 0;
+        list-style-position: inside;
+        li {
+            text-indent: 0;
+        }
+    }
 }
