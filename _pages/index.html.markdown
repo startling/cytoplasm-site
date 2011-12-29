@@ -48,7 +48,7 @@ tags: [creativity, cytoplasm]
 
 Oh man, Cytoplasm is _so_ exciting!
 ~~~~
-The first part of this is an html comment that includes all of your metadata -- you _need_ to have the first two elements, `title` and `date`. Anything further than that is like a blank canvas, delivered to your doorstep in a blister pack with some paints and a cheap paintbrush. You could define a `feeling` field for each post and have your template put little fox-shaped emoticons according to it.
+The first part of this is an html comment that includes all of your metadata -- you _need_ to have the first two elements, `title` and `date`. Everything else is optional, and you can put whatever you want.
 
 For now, though, see what you've got with `cytoplasm serve -r`. Go to <http://localhost:8080> again and you'll see your glorious content framed in half-assed html.
 
