@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Cytoplasm </title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <link rel="stylesheet" href="/autumn.css" type="text/css">
+    <link rel="alternate" href="/blog/atom.xml" type="application/atom+xml" title="Atom feed for the blog">
+
+<body>
+    <header>
+        <img class="logo" src="/logo.png" alt="Cytoplasm logo">
+        <img class="banner" src="/banner.png" alt="Cytoplasm">
+        <p> A new static site and blog compiler.</p>
+    </header>
+    
+<h1 id="an-introduction-to-templates">An Introduction to Templates</h1>
+<p>The first thing you want to do is to copy the example templates from <code>_controllers/blog/examples</code> to a new directory in your site root called <code>_templates</code>. You need to edit <code>_config.py</code>, so the controllers knows the new location of the templates. Change the following line:</p>
+<div class="codehilite"><pre><span class="n">controllers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">&quot;blog&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;_posts&quot;</span><span class="p">,</span> <span class="s">&quot;_build&quot;</span><span class="p">,</span> <span class="s">&quot;_controllers/blog/templates&quot;</span><span class="p">]),</span>
+<span class="p">]</span>
+</pre></div>
+
+
+<p><center> ⇣ </center></p>
+<div class="codehilite"><pre><span class="n">controllers</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">&quot;blog&quot;</span><span class="p">,</span> <span class="p">[</span><span class="s">&quot;_posts&quot;</span><span class="p">,</span> <span class="s">&quot;_build&quot;</span><span class="p">,</span> <span class="s">&quot;_templates&quot;</span><span class="p">]),</span>
+<span class="p">]</span>
+</pre></div>
+
+
+<h2 id="editing-templates">Editing Templates</h2>
+<p>The blog controller comes with three templates, by default: <code>post.mako</code>, <code>chronological.mako</code>, and <code>feeds/atom.xml.mako</code>.</p>
+<h3 id="postmako"><code>post.mako</code></h3>
+<p><code>post.mako</code> is what gets used whenever the controller makes a page containing only one post. There's not much to see here, really, though you can go see <a href="https://github.com/startling/cytoplasm-site/blob/master/_templates/post.mako">this site's</a> and compare it to the <a href="/blog">example blog</a>. It takes a single argument, a Post object. More on those later.</p>
+<h3 id="chronologicalmako"><code>chronological.mako</code></h3>
+<p><code>chronological.mako</code> is used for whatever pages have more than one post on it: specifically, the index page of your blog, and the pages corresponding to months, years, and tags. It takes three arguments: a list of Post objects and the urls of the next and previous pages. Those last two can also be <code>None</code>.</p>
+<p>Things can get a little cluttered if you put the entire contents of every post there. Instead, you can have a mako function that gets the first hundred words of every post.</p>
+<div class="codehilite"><pre><span class="cp">&lt;%</span><span class="nb">def</span> <span class="na">name=</span><span class="s">&quot;excerpt(post)&quot;</span><span class="cp">&gt;</span>
+<span class="cp">## if there are fewer than 100 words, put the whole thing:</span><span class="x"></span>
+<span class="cp">%</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">:</span><span class="x"></span>
+<span class="x">    </span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">contents</span><span class="cp">}</span>
+<span class="cp">%</span> <span class="k">else</span><span class="p">:</span><span class="x"></span>
+<span class="cp">### otherwise, put the first 100 words</span><span class="x"></span>
+<span class="x">    </span><span class="cp">${</span><span class="s">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot; &quot;</span><span class="p">)[:</span><span class="mi">100</span><span class="p">])</span><span class="cp">}</span>
+<span class="cp">## and a (read more) link</span><span class="x"></span>
+<span class="x">    &lt;p&gt;&lt;a href=&quot;/blog/</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">url</span><span class="cp">}</span><span class="x">&quot;&gt;(read more)&lt;/a&gt;&lt;/p&gt;</span>
+<span class="cp">%</span><span class="k">endif</span><span class="x"></span>
+<span class="cp">&lt;/%</span><span class="nb">def</span><span class="cp">&gt;</span><span class="x"></span>
+</pre></div>
+
+
+<p>This is a little problematic though. It could sometimes cut html or markdown tags in pieces, or end your post awkwardly. A better solution is to put a specific break in each post, like <code>&lt;!-- fold --&gt;</code>, and define your excerpt function like so:</p>
+<div class="codehilite"><pre><span class="cp">&lt;%</span><span class="nb">def</span> <span class="na">name=</span><span class="s">&quot;excerpt(post)&quot;</span><span class="cp">&gt;</span>
+<span class="cp">## if post.contents doesn&#39;t have &lt;!-- fold --&gt;...</span><span class="x"></span>
+<span class="cp">%</span> <span class="k">if</span> <span class="n">post</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s">&quot;&lt;!-- fold --&gt;&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="x"></span>
+<span class="cp">## put the whole thing.</span><span class="x"></span>
+<span class="x">    </span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">contents</span><span class="cp">}</span>
+<span class="cp">%</span> <span class="k">else</span><span class="p">:</span><span class="x"></span>
+<span class="cp">## otherwise, put the first part of the string,</span><span class="x"></span>
+<span class="cp">## split on the fold signifier.</span><span class="x"></span>
+<span class="x">    </span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">contents</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&quot;&lt;!-- fold --&gt;&quot;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="cp">}</span>
+<span class="cp">## and a (read more) link</span><span class="x"></span>
+<span class="x">    &lt;p&gt;&lt;a href=&quot;/blog/</span><span class="cp">${</span><span class="n">post</span><span class="o">.</span><span class="n">url</span><span class="cp">}</span><span class="x">&quot;&gt;(read more)&lt;/a&gt;&lt;/p&gt;</span>
+<span class="cp">%</span><span class="k">endif</span><span class="x"></span>
+<span class="cp">&lt;/%</span><span class="nb">def</span><span class="cp">&gt;</span><span class="x"></span>
+</pre></div>
+
+
+<p>Either way, replace <code>${post.contents}</code> with <code>${excerpt(post)}</code></p>
+<h3 id="feedsatomxmlmako"><code>feeds/atom.xml.mako</code></h3>
+<p><code>feeds/atom.xml</code> is what the controller uses to generate the Atom feed, of course. It takes a single argument, a list of Post objects. It's different from <code>chronological.mako</code> because all the posts go on a single document or page, here. In fact, anything you put in the <code>feeds</code> directory will behave like that. You could make an RSS feed pretty easily (if you <em>really</em> wanted) or some sort of JSON database. Maybe even OStatus or something.</p>
+<p>Anyway, if you want your Atom template to work correctly, you need to change the following lines:</p>
+<div class="codehilite"><pre>    <span class="c"># configure these...</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&quot;Example Blog&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="s">&quot;http://example.com/blog&quot;</span>
+</pre></div>
+
+
+<h2 id="a-sitewide-template">A Sitewide Template</h2>
+<p>You probably want to have a single template echoed throughout the entire site. Mako has a really simple way of doing things called inheritance. First, make a file in <code>_templates</code> called <code>site.mako</code> like this:</p>
+<div class="codehilite"><pre><span class="x">&lt;!DOCTYPE HTML&gt;</span>
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;meta charset=&quot;utf-8&quot;&gt;</span>
+<span class="x">    &lt;title&gt; my cytoplasm site &lt;/title&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+<span class="x">    </span><span class="cp">${</span><span class="bp">self</span><span class="o">.</span><span class="n">body</span><span class="p">()</span><span class="cp">}</span><span class="x"></span>
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</pre></div>
+
+
+<p>See that one line that's not quite html? <code>${self.body()}</code>? That's where Mako will put the results of any template that inherits from <code>site.mako</code>. To make your templates inherit from it, add this to the beginning of <code>post.mako</code> and <code>chronological.mako</code>:</p>
+<div class="codehilite"><pre><span class="cp">&lt;%</span><span class="nb">inherit</span> <span class="na">file=</span><span class="s">&quot;/_templates/site.mako&quot;</span> <span class="cp">/&gt;</span><span class="x"></span>
+</pre></div>
+
+
+<h2 id="post-objects">Post Objects</h2>
+<p>The blog controller takes each post and makes it into a Post object. Post objects have a number of attributes that you could use in your templates.</p>
+<ul>
+<li><code>self.contents</code> is a string of the contents of the file, doncha know.</li>
+<li><code>self.path</code> is the name of file, in the blog controller's source directory, that the Post object was made from.</li>
+<li><code>post.title</code> is whatever you define it as in the metadata.</li>
+<li><code>self.slug</code> is the title with spaces replaced by dashes. It's useful for making things like urls.</li>
+<li><code>self.url</code> is the url of the post, relative to the blog controller's build directory. It'll probably look like <code>2011/12/Unbounded-Creativity.html</code>.</li>
+<li><code>post.author</code> and <code>post.email</code> are whatever you define them as in the metadata comment; know that these aren't required, but that your Atom feed will not be valid as per W3C standards. They default to <code>None</code>, and nothing terrible will happen if you don't define them.</li>
+<li><code>post.date</code> is a <a href="http://docs.python.org/library/datetime.html">datetime</a> object, read from the what you define as the date in the metadata.</li>
+<li><code>post.year</code>, <code>post.month</code>, and <code>post.day</code> are syntactic sugar for their respective things, read from the above datetime objects.</li>
+<li><code>post.tags</code> is a list of strings corresponding to the tags you give to the metadata. It defaults to an empty list.</li>
+</ul>
+<p>You can optionally define more attributes in the metadata. Anything further than <code>title</code>, <code>date</code>, and <code>tags</code> are like blank canvases, delivered to your doorstep in a blister packs with some paints and a cheap paintbrush. You could define a <code>feeling</code> field for each post and have your template put little fox-shaped emoticons according to it. Or anything really.</p>
+
+</body>
+</html>
+

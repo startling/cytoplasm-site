@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> Cytoplasm </title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+    <link rel="stylesheet" href="/autumn.css" type="text/css">
+    <link rel="alternate" href="/blog/atom.xml" type="application/atom+xml" title="Atom feed for the blog">
+
+<body>
+    <header>
+        <img class="logo" src="/logo.png" alt="Cytoplasm logo">
+        <img class="banner" src="/banner.png" alt="Cytoplasm">
+        <p> A new static site and blog compiler.</p>
+    </header>
+    
+<h1 id="controllers-and-interpreters">Controllers and Interpreters</h1>
+<p>In your Cytoplasm site, two classes of things do most of the work: controllers and interpreters.</p>
+<h2 id="controllers">Controllers</h2>
+<p>Controllers live in modules in <code>_controllers</code>. They're bound to certain directories in <code>_config.py</code>, and do things with the files in those directories. If this seems a little vague, it's meant to be; controllers can do anything you can do in Python.</p>
+<p>Controllers should be defined as classes inheriting from <code>cytoplasm.controllers.Controller</code>. The stuff that it does should be in the class method <code>__call__</code>.</p>
+<p>Make sure you have a dictionary called <code>info</code>, in your module, with at least one key, <code>"class"</code>, that points to the controller class. That's how Cytoplasm knows which class to instantiate to make a controller object.</p>
+<h3 id="the-page-controller">The Page Controller</h3>
+<p>The page controller is probably the simplest usable controller. It takes a bunch of files, interprets them, and then puts them in a template called <code>page.mako</code> (or <code>.haml</code>, or whatever). To do this, it makes a Page object out of each file. That might turn out to be a common pattern in controllers; the blog controller uses it too.</p>
+<p>Why don't you go look at <a href="https://github.com/startling/cytoplasm-page-controller/blob/master/__init__.py">the source</a>? It's pretty simple.</p>
+<p>If you use a sitewide template, you might want page.mako to look something like this:</p>
+<div class="codehilite"><pre><span class="x">&lt;inherit file=&quot;/_templates/site.mako&quot;/&gt;</span>
+<span class="cp">${</span><span class="n">page</span><span class="o">.</span><span class="n">contents</span><span class="cp">}</span><span class="x"></span>
+</pre></div>
+
+
+<p>Want to install it?</p>
+<div class="codehilite"><pre>git submodule add<span class="se">\</span>
+    git://github.com/startling/cytoplasm-page-controller.git<span class="se">\</span>
+    _controllers/page
+</pre></div>
+
+
+<h3 id="the-blog-controller">The Blog Controller</h3>
+<p>The blog controller takes a series of posts in a directory, interprets them, and then makes chronological pages, post pages, and feeds with them by giving the posts to certain templates. There's a seperate page detailing these templates, by the way.</p>
+<p>There's not a whole lot to say here; it's kind of straightforward. You can look at the example blog or the source of the blog controller.</p>
+<h2 id="interpreters">Interpreters</h2>
+<p>Interpreters live in <code>_config.py</code> and are used in translating any sort of mark-up language, things like Markdown, Mako, and scss. Controllers use interpreters for certain actions (like interpreting a Markdown post to html, before putting them in templates); in addition, everything in the root of your site directory that doesn't begin with <code>.</code> or <code>_</code> will be interpreted.</p>
+<p>Interpreters are just functions. Use the decorator <code>@Interpreter(suffix)</code> to add them to your dictionary of interpreters, to interpret files ending in suffix. You can give it as many suffixes as you want; the Markdown interpreter's one, for example, is <code>@Interpreter("markdown", "md")</code>.</p>
+<p>Some mark-up languages don't come with quick ways to save to a file; in those cases, return the interpreted text and use the decorator <code>@SaveReturned</code>.</p>
+<p>This might all seem rather abstract, but you can see a bunch in the <a href="/known_interpreters.html">list of interpreters</a>.</p>
+
+</body>
+</html>
+

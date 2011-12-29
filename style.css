@@ -45,5 +45,26 @@ header img.banner {
 	font-size: 90px;}
 
 pre {
-	font: .8em 'Andale mono' , courier;}
+	margin: 1em;
+	padding: .5em;
+	border: 1px solid #466533;
+	border-radius: 3px;
+	font: .8em courier;
+	-moz-border-radius: 3px;}
+
+div.toc {
+	margin: 1em;
+	padding: .5em;
+	border: 1px solid #466533;
+	border-radius: 3px;
+	-moz-border-radius: 3px;}
+
+div.toc ul {
+	margin: 0;
+	margin-left: .5em;
+	padding: 0;
+	list-style-position: inside;}
+
+div.toc ul li {
+	text-indent: 0;}
 

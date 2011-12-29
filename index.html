@@ -14,40 +14,67 @@
         <p> A new static site and blog compiler.</p>
     </header>
     
-<h1 id="features-design">Features &amp; Design:</h1>
-<p>Cytoplasm is a simple-ish static site compiler. It's meant to be used mostly as a blogging engine, though it <a href="#cytoplasm-is-easily-extensible">can be used for more than that</a>. Here are some things you might like about it:</p>
-<h2 id="cytoplasm-is-portable">Cytoplasm is Portable</h2>
-<p>A Cytoplasm site is defined completely by its configuration and its contents. The output is just a set of plain html files, and so can be hosted just about anywhere. <code>cytoplasm</code>, the script, will run anywhere where Python is installed -- it's tested and works in Pythons 2.7.2 and 3.2.</p>
-<h2 id="cytoplasm-is-pretty-simple">Cytoplasm is Pretty Simple</h2>
-<p><a href="/tutorial/#installation">Install Cytoplasm</a> and run <code>cytoplasm init bare</code> to get the basis of your future blog. Add some posts in <code>_posts</code>, edit your templates in <code>_templates</code>, and <code>cytoplasm build</code> to generate some html files.</p>
-<p>And Cytoplasm comes with a built-in server for local testing. <code>cytoplasm serve</code> will start it on port number 8080; <code>cytoplasm serve -r</code> will serve on port 8080 and automatically re-build your site whenever you make a change to a source file. You can specify a port with something like <code>cytoplasm serve 8000</code>.</p>
-<h2 id="cytoplasm-is-easily-extensible">Cytoplasm is Easily Extensible</h2>
-<p>Cytoplasm interpreters are python functions in your configuration file. The markdown one, for example, is just:</p>
-<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">markdown</span>
-<span class="n">markdown_extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;abbr&#39;</span><span class="p">,</span> <span class="s">&#39;footnotes&#39;</span><span class="p">,</span> <span class="s">&#39;toc&#39;</span><span class="p">,</span> <span class="s">&#39;fenced_code&#39;</span><span class="p">,</span> <span class="s">&#39;headerid&#39;</span><span class="p">]</span>
-
-<span class="nd">@Interpreter</span><span class="p">(</span><span class="s">&quot;markdown&quot;</span><span class="p">,</span> <span class="s">&quot;md&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">markdown_interpreter</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
-    <span class="n">markdown</span><span class="o">.</span><span class="n">markdownFromFile</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="nb">file</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
-        <span class="n">extensions</span> <span class="o">=</span> <span class="n">markdown_extensions</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;utf8&quot;</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+<h1 id="welcome-to-cytoplasm">Welcome to Cytoplasm!</h1>
+<p>This is Cytoplasm, a simple static blogging-and-other-things generator. Cytoplasm takes some posts and templates and outputs a bunch of HTML files, which you can host basically anywhere. Since everything is plain text, using version control and making back-ups are both super easy.</p>
+<h2 id="getting-started">Getting Started</h2>
+<p>You'll need <a href="http://git-scm.com/">Git</a> and <a href="http://www.pip-installer.org/en/latest/index.html">pip</a> to get started. (Side note: this example will only work in Python 2.x, sorry; python-scss doesn't support 3 yet. If you're set on using Python 3, though, read on: Cytoplasm itself is fully compatible with Python 3.x.)</p>
+<div class="codehilite"><pre><span class="c"># install cytoplasm -- pip will install cytoplasm&#39;s dependencies.</span>
+pip install cytoplasm
+<span class="c"># install this site&#39;s dependencies.</span>
+pip install markdown scss
+<span class="c"># make a directory for your site and change into it.</span>
+mkdir cytoplasm-site
+<span class="nb">cd </span>cytoplasm-site
+<span class="c"># initalize this site.</span>
+cytoplasm init cytoplasm
+<span class="c"># build the site..</span>
+cytoplasm build
+<span class="c"># serve it!</span>
+cytoplasm serve
 </pre></div>
 
 
-<p>Similarly, Cytoplasm controllers are classes that inherit from a base class in the cytoplasm module.</p>
-<h2 id="cytoplasm-integrates-well-with-git">Cytoplasm Integrates Well With Git</h2>
-<p>This source of this site (compiled by Cytoplasm, of course) can be cloned from <code>https://startling@github.com/startling/cytoplasm-site.git</code>. Everything works within a git repository; in fact, you'll be missing a lot if you don't use one. Controllers can be installed as git submodules. Pull and push wherever you want!</p>
-<h2 id="more-information">More Information</h2>
+<p>Go to <a href="http://localhost:8080">http://localhost:8080</a> and you'll have a local replica of this website running. How's that for recursion? Douglas Hofstadter would be proud.</p>
+<p>After you spend a few moments in awe, you can quit the webserver with ctrl-C.</p>
+<h2 id="your-very-own-site">Your Very Own Site</h2>
+<p>Now that you can see the edges of how Cytoplasm works, you're probably bounding with unharnessed creativity. Don't worry. It's easy. </p>
+<p>We're going to start from the beginning here, but feel free to just edit the files you got above. You might want to pretend to follow along, though, just to get the hang of things:</p>
+<div class="codehilite"><pre><span class="c"># make a new directory and change into it.</span>
+mkdir bounding_creativity
+<span class="nb">cd </span>bounding_creativity
+<span class="c"># Initialize the bare cytoplasm site here.</span>
+cytoplasm init bare
+<span class="c"># make the `_posts` directory</span>
+mkdir _posts
+</pre></div>
+
+
+<p>Let's make an example post and put it into our <code>_posts</code> directory as <code>creativity.html.markdown</code>, just for kicks.</p>
+<div class="codehilite"><pre><span class="o">&lt;!--</span> <span class="n">metadata</span>
+<span class="n">title:</span> <span class="n">Unbounded</span> <span class="n">Creativity</span>
+<span class="n">date:</span> <span class="mi">2011</span><span class="sr">/12/</span><span class="mi">17</span>
+<span class="n">tags:</span> <span class="p">[</span><span class="n">creativity</span><span class="p">,</span> <span class="n">cytoplasm</span><span class="p">]</span>
+<span class="o">--&gt;</span>
+
+<span class="n">Oh</span> <span class="n">man</span><span class="p">,</span> <span class="n">Cytoplasm</span> <span class="n">is</span> <span class="n">_so_</span> <span class="n">exciting</span><span class="o">!</span>
+</pre></div>
+
+
+<p>The first part of this is an html comment that includes all of your metadata -- you <em>need</em> to have the first two elements, <code>title</code> and <code>date</code>. Everything else is optional, and you can put whatever you want.</p>
+<p>For now, though, see what you've got with <code>cytoplasm serve -r</code>. Go to <a href="http://localhost:8080">http://localhost:8080</a> again and you'll see your glorious content framed in half-assed html.</p>
+<p>Keep the server running for now; <code>cytoplasm serve -r</code> will rebuild the site every time you make a change to the source.</p>
+<h2 id="chose-your-own-adventure">Chose Your Own Adventure</h2>
+<p>Do you want to...</p>
 <ul>
-<li>A <a href="/blog">sample blog</a>.</li>
-<li>A weird <a href="/tutorial">combination</a> of install instructions, documentation, and tutorial.</li>
-<li>Some <a href="/tutorial/tips.html">tips</a> that I didn't know where else to put.</li>
-<li><a href="https://github.com/startling/cytoplasm">Github</a> and <a href="https://gitorious.org/cytoplasm/cytoplasm">Gitorious</a> repositories for Cytoplasm. </li>
-<li><a href="https://github.com/startling/cytoplasm-site">Github repository</a> for this site.</li>
+<li><strong>edit</strong> the <strong>half-assed html</strong>? Go to <a href="/templates.html">page 12</a>.</li>
+<li><strong>configure</strong> your new blog? You want <a href="/configuration.html">page vii</a>.</li>
+<li>learn more about <strong>controllers</strong> and <strong>interpreters</strong>? Go to <a href="/controllers_and_interpreters.html">page 34</a>.</li>
+<li><strong>see</strong> the <strong>example blog</strong>? It's the third door on the <a href="/blog">left</a>.</li>
+<li><strong>enable syntax highlighting</strong> or <strong>read some more tips</strong>? Go to <a href="/tips.html">page 71</a>.</li>
+<li><strong>get more interpreters</strong>? See the <a href="/known_interpreters.html">glossary</a>.</li>
+<li>browse the <strong>git repository for Cytoplasm</strong>? See Github, <a href="https://github.com/startling/cytoplasm">Appendix A</a>.</li>
+<li>browse the <strong>git repository for this site</strong>? See Github, <a href="https://github.com/startling/cytoplasm-site">Appendix B</a></li>
 </ul>
-<h2 id="addenda">Addenda</h2>
-<p>So, what do you think so far? Do you like Cytoplasm? Is there anything you don't understand here, or would like to hear more about? Feel free to get in touch with me -- I'm tim/startling and my email address for now is <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#116;&#100;&#105;&#120;&#111;&#110;&#53;&#49;&#55;&#57;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;">&#116;&#100;&#105;&#120;&#111;&#110;&#53;&#49;&#55;&#57;&#51;&#64;&#103;&#109;&#97;&#105;&#108;&#46;&#99;&#111;&#109;</a>; you can see what I'm up to at <a href="http://somethingsido.com">my website</a>. I'd like to hear if you use Cytoplasm for anything, or have any feedback.</p>
-<h2 id="license">License</h2>
-<p>Cytoplasm is free software and is released under the <a href="https://github.com/startling/cytoplasm/blob/master/LICENSE">MIT (Expat) License</a>.</p>
 
 </body>
 </html>

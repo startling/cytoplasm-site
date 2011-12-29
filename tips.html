@@ -14,11 +14,10 @@
         <p> A new static site and blog compiler.</p>
     </header>
     
-<h1 id="some-hints">Some Hints:</h1>
+<h1 id="some-hints">Some Hints</h1>
+<p>Here are some things I didn't know where else to put.</p>
 <h2 id="code-highlighting">Code Highlighting</h2>
-<p>First make sure that you have "codehilite" in your <code>markdown_extensions</code> list in <code>_config.py</code>, if you don't have it yet. Previously, python-markdown would raise some errors if you had both "codehilite" and "fenced_code" enabled, and so you might not have it.</p>
-<p>You'll need a css file, too. Richeland's <a href="https://github.com/richleland/pygments-css">pygments-css</a> repository is super helpful here; just grab one of those and put it in your site root. </p>
-<p>You'll need to add a line to your html header, too, something like:</p>
+<p>First make sure that you have "codehilite" in your <code>markdown_extensions</code> list in <code>_config.py</code>, if you don't have it yet. You'll need a css file, too. Richeland's <a href="https://github.com/richleland/pygments-css">pygments-css</a> repository is super helpful here; just grab one of those and put it in your site root. Add a line toinclude it in your html header, too, something like:</p>
 <div class="codehilite"><pre><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;stylesheet&quot;</span> <span class="na">href=</span><span class="s">&quot;/autumn.css&quot;</span> <span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
 </pre></div>
 
@@ -27,53 +26,6 @@
 <div class="codehilite"><pre><span class="o">~~~~</span><span class="p">{</span><span class="o">.</span><span class="n">python</span><span class="p">}</span>
 <span class="k">print</span> <span class="s">&quot;hello, world!&quot;</span>
 <span class="o">~~~~</span>
-</pre></div>
-
-
-<h2 id="interpreters">Interpreters:</h2>
-<p>Here's all the interpreters I've written so far; let me know if you have another one. Just add them to your <code>_config.py</code> if you want.</p>
-<h3 id="mako">Mako</h3>
-<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">mako.lookup</span><span class="o">,</span> <span class="nn">mako.template</span>
-<span class="c"># Mako should look for templates to include in the current directory.</span>
-<span class="c"># This should let you include things like &quot;_templates/site.mako&quot;</span>
-<span class="n">mako_lookup</span> <span class="o">=</span> <span class="n">mako</span><span class="o">.</span><span class="n">lookup</span><span class="o">.</span><span class="n">TemplateLookup</span><span class="p">(</span><span class="n">directories</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;.&#39;</span><span class="p">])</span>
-
-<span class="nd">@Interpreter</span><span class="p">(</span><span class="s">&quot;mako&quot;</span><span class="p">)</span>
-<span class="c"># Mako doesn&#39;t come with an easy built-in way to save the output to a certain file;</span>
-<span class="c"># this decorator does that.</span>
-<span class="nd">@SaveReturned</span>
-<span class="k">def</span> <span class="nf">mako_interpreter</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="c"># pass kwargs to the mako template</span>
-    <span class="n">page</span> <span class="o">=</span> <span class="n">mako</span><span class="o">.</span><span class="n">template</span><span class="o">.</span><span class="n">Template</span><span class="p">(</span><span class="n">filename</span><span class="o">=</span><span class="nb">file</span><span class="p">,</span> <span class="n">lookup</span><span class="o">=</span><span class="n">mako_lookup</span><span class="p">,</span> <span class="n">input_encoding</span><span class="o">=</span><span class="s">&#39;utf-8&#39;</span><span class="p">)</span>
-    <span class="c"># this is dumb but it&#39;s the only way I can make it work.</span>
-    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">major</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
-        <span class="c"># if it&#39;s python 2, use .encode(&#39;utf-8&#39;, &#39;replace&#39;)</span>
-        <span class="k">return</span> <span class="n">page</span><span class="o">.</span><span class="n">render_unicode</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;utf-8&#39;</span><span class="p">,</span> <span class="s">&#39;replace&#39;</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">sys</span><span class="o">.</span><span class="n">version_info</span><span class="o">.</span><span class="n">major</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
-        <span class="c"># otherwise, just render it...</span>
-        <span class="k">return</span> <span class="n">page</span><span class="o">.</span><span class="n">render_unicode</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-</pre></div>
-
-
-<h3 id="scss">scss</h3>
-<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">scss</span> <span class="kn">import</span> <span class="n">parser</span> <span class="k">as</span> <span class="n">scss_parser</span>
-
-<span class="nd">@Interpreter</span><span class="p">(</span><span class="s">&quot;scss&quot;</span><span class="p">)</span>
-<span class="nd">@SaveReturned</span>
-<span class="k">def</span> <span class="nf">scss_interpreter</span><span class="p">(</span><span class="nb">file</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">scss_parser</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="nb">file</span><span class="p">)</span>
-</pre></div>
-
-
-<h3 id="markdown">Markdown</h3>
-<p>This probably came with your site... still:</p>
-<div class="codehilite"><pre><span class="kn">import</span> <span class="nn">markdown</span>
-<span class="n">markdown_extensions</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;abbr&#39;</span><span class="p">,</span> <span class="s">&#39;footnotes&#39;</span><span class="p">,</span> <span class="s">&#39;toc&#39;</span><span class="p">,</span> <span class="s">&#39;fenced_code&#39;</span><span class="p">,</span> <span class="s">&#39;headerid&#39;</span><span class="p">,</span> <span class="s">&#39;codehilite&#39;</span><span class="p">]</span>
-
-<span class="nd">@Interpreter</span><span class="p">(</span><span class="s">&quot;markdown&quot;</span><span class="p">,</span> <span class="s">&quot;md&quot;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">markdown_interpreter</span><span class="p">(</span><span class="nb">file</span><span class="p">,</span> <span class="n">destination</span><span class="p">):</span>
-    <span class="n">markdown</span><span class="o">.</span><span class="n">markdownFromFile</span><span class="p">(</span><span class="nb">input</span><span class="o">=</span><span class="nb">file</span><span class="p">,</span> <span class="n">output</span><span class="o">=</span><span class="n">destination</span><span class="p">,</span>
-            <span class="n">extensions</span> <span class="o">=</span> <span class="n">markdown_extensions</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s">&quot;utf8&quot;</span><span class="p">,</span> <span class="n">safe</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
 
 </body>
