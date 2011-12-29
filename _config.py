@@ -24,7 +24,5 @@ def scss_interpreter(file):
 # and the destination directory of its output.
 controllers = [
     ("blog", ["_posts", "_build/blog"]),
-    # the pages controller does the root directory, the documentation, and the tutorial separately.
     ("page", ["_pages", "_build"]),
-    ("page", ["_tutorial", "_build/tutorial"])
 ]
