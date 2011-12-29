@@ -40,6 +40,30 @@ def scss_interpreter(file):
 ~~~~~
 I should probably note here that SCSS doesn't install on Python 3. So uh, don't use it if you expect to use Python 3.
 
+## Haml.
+A Haml interpreter using [PyHaml](https://github.com/mikeboers/PyHAML). You know, you can use this for templates, instead of Mako. Something like `post.haml`. Or whatever.
+
+PyHaml doesn't work with Python 3 either, though.
+~~~~~{.python}
+# A PyHaml Interpreter.
+# PyHaml is a preprocessor for mako, so a lot of this
+# is the same as it was there.
+import haml
+
+@Interpreter("haml")
+@SaveReturned
+def pyhaml_interpreter(file, **kwargs):
+    page = mako.template.Template(filename=file, lookup=mako_lookup,
+        input_encoding='utf-8', preprocessor=haml.preprocessor)
+    # this is dumb but it's the only way I can make it work.
+    if sys.version_info.major == 2:
+        # if it's python 2, use .encode('utf-8', 'replace')
+        return page.render_unicode(**kwargs).encode(
+            'utf-8', 'replace')
+    elif sys.version_info.major == 3:
+        # otherwise, just render it...
+        return page.render_unicode(**kwargs)
+~~~~~
 ## Markdown
 This probably came with your site... still:
 ~~~~~{.python}
