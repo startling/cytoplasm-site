@@ -58,7 +58,7 @@ Anyway, if you want your Atom template to work correctly, you need to change the
     title = "Example Blog"
     url = "http://example.com/blog"
 ~~~~~
-## A Sitewide Template
+## A Site-wide Template
 You probably want to have a single template echoed throughout the entire site. Mako has a really simple way of doing things called inheritance. First, make a file in `_templates` called `site.mako` like this:
 ~~~~{.mako}
 <!DOCTYPE HTML>

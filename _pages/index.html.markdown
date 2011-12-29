@@ -14,7 +14,7 @@ pip install markdown scss pyyaml
 # make a directory for your site and change into it.
 mkdir cytoplasm-site
 cd cytoplasm-site
-# initalize this site.
+# initialize this site.
 cytoplasm init cytoplasm
 # build the site..
 cytoplasm build
@@ -23,7 +23,7 @@ cytoplasm serve
 ~~~~
 Go to <http://localhost:8080> and you'll have a local replica of this website running. How's that for recursion? Douglas Hofstadter would be proud.
 
-After you spend a few moments in awe, you can quit the webserver with ctrl-C.
+After you spend a few moments in awe, you can quit the web server with ctrl-C.
 
 ## Your Very Own Site
 Now that you can see the edges of how Cytoplasm works, you're probably bounding with unharnessed creativity. Don't worry. It's easy. 

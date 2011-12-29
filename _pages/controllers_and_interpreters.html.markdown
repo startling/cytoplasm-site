@@ -16,7 +16,7 @@ The page controller is probably the simplest usable controller. It takes a bunch
 
 Why don't you go look at [the source](https://github.com/startling/cytoplasm-page-controller/blob/master/__init__.py)? It's pretty simple.
 
-If you use a sitewide template, you might want page.mako to look something like this:
+If you use a site-wide template, you might want page.mako to look something like this:
 ~~~~{.mako}
 <inherit file="/_templates/site.mako"/>
 ${page.contents}
@@ -31,7 +31,7 @@ git submodule add\
 ~~~~~
 ### The Blog Controller
 
-The blog controller takes a series of posts in a directory, interprets them, and then makes chronological pages, post pages, and feeds with them by giving the posts to certain templates. There's a seperate page detailing these templates, by the way.
+The blog controller takes a series of posts in a directory, interprets them, and then makes chronological pages, post pages, and feeds with them by giving the posts to certain templates. There's a separate page detailing these templates, by the way.
 
 There's not a whole lot to say here; it's kind of straightforward. You can look at the example blog or the source of the blog controller.
 
