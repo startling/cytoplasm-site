@@ -15,7 +15,7 @@ pip install markdown scss pyyaml
 mkdir cytoplasm-site
 cd cytoplasm-site
 # initialize this site.
-cytoplasm init cytoplasm
+cytoplasm init cytoplasm-site
 # build the site..
 cytoplasm build
 # serve it!
