@@ -1,8 +1,6 @@
-<!-- metadata
 title: Working With Unicode
 date: 2011/12/18
 tags: [meta, unicode, beowulf]
--->
 
 This took a few commits, but Cytoplasm works well with Unicode now, even in Python 2.x. It's been a little bit of a struggle.
 
