@@ -40,15 +40,13 @@ mkdir _posts
 ~~~~
 Let's make an example post and put it into our `_posts` directory as `creativity.html.markdown`, just for kicks.
 ~~~~{.markdown}
-<!-- metadata
 title: Unbounded Creativity
 date: 2011/12/17
 tags: [creativity, cytoplasm]
--->
 
 Oh man, Cytoplasm is _so_ exciting!
 ~~~~
-The first part of this is an html comment that includes all of your metadata -- you _need_ to have the first two elements, `title` and `date`. Everything else is optional, and you can put whatever you want.
+The first part of this is your metadata -- you _need_ to have the first two elements, `title` and `date`. Everything else is optional, and you can put whatever you want.
 
 For now, though, see what you've got with `cytoplasm serve -r`. Go to <http://localhost:8080> again and you'll see your glorious content framed in half-assed html.
 
