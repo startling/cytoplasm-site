@@ -39,7 +39,7 @@ There's not a whole lot to say here; it's kind of straightforward. You can look 
 
 Interpreters live in `_config.py` and are used in translating any sort of mark-up language, things like Markdown, Mako, and scss. Controllers use interpreters for certain actions (like interpreting a Markdown post to html, before putting them in templates); in addition, everything in the root of your site directory that doesn't begin with `.` or `_` will be interpreted.
 
-Interpreters are just functions. Use the decorator `@Interpreter(suffix)` to add them to your dictionary of interpreters, to interpret files ending in suffix. You can give it as many suffixes as you want; the Markdown interpreter's one, for example, is `@Interpreter("markdown", "md")`.
+Interpreters are just functions. Use the decorator `@Interpreter(suffix)` to add them to your dictionary of interpreters, to interpret files ending in suffix. You can give it as many suffixes as you want; the Markdown interpreter's one, for example, is `@Interpreter("markdown", "md")`. They take two arguments, both file-objects, representing the source file and destination file.
 
 Some mark-up languages don't come with quick ways to save to a file; in those cases, return the interpreted text and use the decorator `@SaveReturned`.
 
