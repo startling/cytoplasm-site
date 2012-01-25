@@ -39,7 +39,7 @@ cytoplasm init bare
 mkdir _posts
 ~~~~
 Let's make an example post and put it into our `_posts` directory as `creativity.html.markdown`, just for kicks.
-~~~~{.markdown}
+~~~~{.yaml}
 title: Unbounded Creativity
 date: 2011/12/17
 tags: [creativity, cytoplasm]
