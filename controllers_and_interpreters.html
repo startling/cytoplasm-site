@@ -41,7 +41,7 @@
 <p>There's not a whole lot to say here; it's kind of straightforward. You can look at the example blog or the source of the blog controller.</p>
 <h2 id="interpreters">Interpreters</h2>
 <p>Interpreters live in <code>_config.py</code> and are used in translating any sort of mark-up language, things like Markdown, Mako, and scss. Controllers use interpreters for certain actions (like interpreting a Markdown post to html, before putting them in templates); in addition, everything in the root of your site directory that doesn't begin with <code>.</code> or <code>_</code> will be interpreted.</p>
-<p>Interpreters are just functions. Use the decorator <code>@Interpreter(suffix)</code> to add them to your dictionary of interpreters, to interpret files ending in suffix. You can give it as many suffixes as you want; the Markdown interpreter's one, for example, is <code>@Interpreter("markdown", "md")</code>.</p>
+<p>Interpreters are just functions. Use the decorator <code>@Interpreter(suffix)</code> to add them to your dictionary of interpreters, to interpret files ending in suffix. You can give it as many suffixes as you want; the Markdown interpreter's one, for example, is <code>@Interpreter("markdown", "md")</code>. They take two arguments, both file-objects, representing the source file and destination file.</p>
 <p>Some mark-up languages don't come with quick ways to save to a file; in those cases, return the interpreted text and use the decorator <code>@SaveReturned</code>.</p>
 <p>This might all seem rather abstract, but you can see a bunch in the <a href="/known_interpreters.html">list of interpreters</a>.</p>
 

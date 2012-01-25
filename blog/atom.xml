@@ -5,19 +5,13 @@
     <title> Cytoplasm Blog </title>
     <link href="http://cytoplasm.somethingsido.com/blog/atom.xml" rel="self" />
     <link href="http://cytoplasm.somethingsido.com/blog" />
-    <updated>2012-01-11T00:00:00Z</updated>
+    <updated>2012-01-25T00:00:00Z</updated>
     <entry>
         <title>Working With Unicode</title>
-        <link href="http://cytoplasm.somethingsido.com/blog2011/12/Working-With-Unicode" type="text/html" />
-        <id>http://cytoplasm.somethingsido.com/blog2011/12/Working-With-Unicode</id>
-        <updated>2012-01-11T00:00:00Z</updated>
+        <link href="http://cytoplasm.somethingsido.com/blog2011/12/Working-With-Unicode.html" type="text/html" />
+        <id>http://cytoplasm.somethingsido.com/blog2011/12/Working-With-Unicode.html</id>
+        <updated>2012-01-25T00:00:00Z</updated>
         <content type="html"><![CDATA[
-<!-- metadata
-title: Working With Unicode
-date: 2011/12/18
-tags: [meta, unicode, beowulf]
--->
-
 <p>This took a few commits, but Cytoplasm works well with Unicode now, even in Python 2.x. It's been a little bit of a struggle.</p>
 <p>It reminded me of this story:</p>
 <blockquote>
@@ -48,16 +42,10 @@ Scyldes eafera Scede‐landum in.<br />
     </entry>
     <entry>
         <title>A First Post</title>
-        <link href="http://cytoplasm.somethingsido.com/blog2011/12/A-First-Post" type="text/html" />
-        <id>http://cytoplasm.somethingsido.com/blog2011/12/A-First-Post</id>
-        <updated>2012-01-11T00:00:00Z</updated>
+        <link href="http://cytoplasm.somethingsido.com/blog2011/12/A-First-Post.html" type="text/html" />
+        <id>http://cytoplasm.somethingsido.com/blog2011/12/A-First-Post.html</id>
+        <updated>2012-01-25T00:00:00Z</updated>
         <content type="html"><![CDATA[
-<!-- metadata
-title: A First Post
-date: 2011/12/14
-tags: [meta, examples]
--->
-
 <p>This is the first post ever published with Cytoplasm! Notice that the year and month, above, are links that take you to all the posts published in that year or month. The same goes for the tags. Not that there are any other posts here yet...</p>
 <p>The title above is also a link, a permalink to this post.</p>
     ]]></content>
