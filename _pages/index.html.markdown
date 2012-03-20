@@ -2,7 +2,7 @@
 This is Cytoplasm, a simple static blogging-and-other-things generator. Cytoplasm takes some posts and templates and outputs a bunch of HTML files, which you can host basically anywhere. Since everything is plain text, using version control and making back-ups are both super easy.
 
 ## Getting Started 
-You'll need [Git][] and [pip][] to get started. (Side note: this example will only work in Python 2.x, sorry; python-scss doesn't support 3 yet. If you're set on using Python 3, though, read on: Cytoplasm itself is fully compatible with Python 3.x.)
+You'll need [Git][] and [pip][] to get started. 
 
 [Git]: http://git-scm.com/
 [pip]: http://www.pip-installer.org/en/latest/index.html
